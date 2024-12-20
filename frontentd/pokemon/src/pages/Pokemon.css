@@ -1,0 +1,55 @@
+/* Importación de fuente */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    height: 100vh; /* Asegura que el cuerpo ocupa toda la altura de la ventana */
+    overflow: hidden; /* Evita el scroll en el cuerpo */
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px); /* Ajusta según el tamaño de la cabecera */
+    overflow: hidden; /* Asegura que no haya scroll */
+    margin-top: 200px; /* Evita superposición con la cabecera */
+    box-sizing: border-box;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+/* Tabla */
+.tabla {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #0072c6;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
