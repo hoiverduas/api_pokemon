@@ -1,32 +1,24 @@
-package com.pokemon.pokeApi.entities;
+package com.pokemon.pokeApi.dto;
 
-import jakarta.persistence.*;
+import jakarta.persistence.ElementCollection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-
-
 @Data
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
-@Entity
-@DiscriminatorValue("TRAINER")
-@SuperBuilder
-public class Trainer extends User{
+public class RegisterDto {
 
-
+    private String password;
+    private String email;
     private String name;
     private String city;
-
     @ElementCollection
     private List<String> favoritePokemons;
-
     private int score;
-
-
 }

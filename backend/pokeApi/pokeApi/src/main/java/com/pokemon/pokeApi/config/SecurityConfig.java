@@ -32,10 +32,9 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "api/auth").permitAll()
+                        .requestMatchers(HttpMethod.POST, "api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pokemon/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/trainers/allTrainers").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/trainers").permitAll()
                         .requestMatchers( "/api/trainers/**").hasRole("TRAINER")
                         .anyRequest().authenticated()
                 )

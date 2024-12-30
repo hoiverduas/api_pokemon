@@ -15,9 +15,9 @@ public class JwtUtil {
     private static String SECRET_KEY = "HD_JavaDv";
     private static Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY);
 
-    public String create(String userName){
+    public String create(String email){
         return JWT.create()
-                .withSubject(userName)
+                .withSubject(email)
                 .withIssuer("JavaDv")
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5) ))

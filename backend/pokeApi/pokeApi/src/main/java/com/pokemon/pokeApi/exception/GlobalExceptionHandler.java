@@ -10,6 +10,13 @@ import org.springframework.web.client.HttpClientErrorException;
 public class GlobalExceptionHandler {
 
 
+    @ExceptionHandler(UsernameNotFound.class)
+    public ResponseEntity<String> handleUsernameNotFound(UsernameNotFound e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Error: " + e.getMessage());
+    }
+
+
     @ExceptionHandler(HttpClientErrorException.class)
     public ResponseEntity<String> handleHttpClientError(HttpClientErrorException ex) {
         return ResponseEntity.status(ex.getStatusCode())

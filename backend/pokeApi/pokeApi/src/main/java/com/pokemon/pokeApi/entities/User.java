@@ -6,11 +6,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
-
+import lombok.experimental.SuperBuilder;
 
 
 @Entity
@@ -20,15 +19,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@SuperBuilder
 public abstract class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String password;
     private String email;
-
     @Transient
     @JsonProperty("role")
     public String getRole() {

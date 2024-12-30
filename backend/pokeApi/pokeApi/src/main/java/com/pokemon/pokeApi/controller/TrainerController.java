@@ -1,6 +1,7 @@
 package com.pokemon.pokeApi.controller;
 
 import com.pokemon.pokeApi.entities.Trainer;
+import com.pokemon.pokeApi.exception.UsernameNotFound;
 import com.pokemon.pokeApi.service.impl.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,18 +16,13 @@ import java.util.List;
 @RequestMapping("/api/trainers")
 public class TrainerController {
 
-    @Autowired
-    private TrainerService trainerService;
+    private final TrainerService trainerService;
 
-    @PostMapping
-    public ResponseEntity<Trainer> createTrainer(@RequestBody Trainer trainer) {
-       try {
-           return ResponseEntity.status(HttpStatus.CREATED)
-                   .body(trainerService.createTrainer(trainer));
-       }catch (RuntimeException e){
-           return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-       }
+    public TrainerController(TrainerService trainerService) {
+        this.trainerService = trainerService;
     }
+
+
 
     @GetMapping("/allTrainers")
     public ResponseEntity<List<Trainer>>  getAllTrainers(){
@@ -56,7 +52,7 @@ public class TrainerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Trainer> getByIdTrainer(@PathVariable Long id) {
+    public ResponseEntity<Trainer> getByIdTrainer(@PathVariable Long id) throws UsernameNotFound {
        try {
            return ResponseEntity
                    .status(HttpStatus.OK)
@@ -68,7 +64,7 @@ public class TrainerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Trainer> updateTrainer(@PathVariable Long id, @RequestBody Trainer trainer) {
+    public ResponseEntity<Trainer> updateTrainer(@PathVariable Long id, @RequestBody Trainer trainer) throws UsernameNotFound {
        try {
            return ResponseEntity.
                    status(HttpStatus.OK)
@@ -82,7 +78,7 @@ public class TrainerController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTrainer(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTrainer(@PathVariable Long id) throws UsernameNotFound {
        try {
            trainerService.deleteTrainer(id);
            return ResponseEntity
